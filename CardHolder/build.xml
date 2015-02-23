@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<project name="CardHolder" basedir="." default="build"> 
+    <property file="ant.properties"/> 
+    <property name="src.dir" value="src"/> 
+    <property name="web.dir" value="WebContent"/> 
+    <property name="build.dir" value="${web.dir}/WEB-INF/classes"/> 
+    <property name="deploy.path" value="${tomcat.home}/webapps"/> 
+    <property name="name" value="CardHolder"/> 
+  
+    <path id="master-classpath"> 
+        <fileset dir="${web.dir}/WEB-INF/lib"> 
+                    <include name="*.jar"/> 
+                </fileset> 
+  
+        <fileset dir="${tomcat.home}/lib"> 
+            <include name="servlet*.jar"/> 
+        </fileset> 
+        <pathelement path="${build.dir}"/> 
+    </path> 
+  
+    <target name="build" description="Compile main source tree java files"> 
+        <echo>Building...</echo> 
+        <mkdir dir="${build.dir}"/> 
+        <javac destdir="${build.dir}" failonerror="true" includeantruntime="on"> 
+            <src path="${src.dir}"/> 
+            <classpath refid="master-classpath"/> 
+        </javac> 
+    </target> 
+  
+    <target name="war-archiving"> 
+        <echo>Archiving...</echo> 
+        <war destfile="${name}.war" webxml="${web.dir}/WEB-INF/web.xml"> 
+            <fileset dir="${web.dir}"> 
+                <include name="**/*.*"/> 
+            </fileset> 
+        </war> 
+    </target> 
+  
+    <target name="deploy" depends="build"> 
+        <echo>Deploying...</echo> 
+        <copy todir="${deploy.path}"> 
+            <fileset dir="."> 
+                <include name="*.war"/> 
+            </fileset> 
+        </copy> 
+    </target> 
+  
+</project>

@@ -1,0 +1,287 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>search</title>
+<link href="../resources/css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../js/esl.js"></script>
+<script type="text/javascript">
+window.onload=function(){
+	require.config({
+	    paths:{ 
+	    	echarts:'../js/echarts',
+            'echarts/chart/bar' : '../js/echarts',
+            'echarts/chart/line' : '../js/echarts',
+            'echarts/chart/bar' : '../js/echarts-map',
+            'echarts/chart/line': '../js/echarts-map',
+            'echarts/chart/map' : '../js/echarts-map'
+	    }
+	});
+	require(
+	    [
+	        'echarts',
+	        'echarts/chart/bar',
+	        'echarts/chart/line',
+            'echarts/chart/map'
+	    ],
+	    function(ec) {
+	        //最近一年我的消费走势
+	        var myChart = ec.init(document.getElementById('bill'));
+	       	var option = {
+		  	grid : {
+		        x : 80,
+		        y : 50,
+		        x2 : 40,
+		        y2 : 30
+		      },
+		    title : {
+		        //text: '最近一年我的消费走势'
+		    },
+		    tooltip : {
+		        trigger: 'axis'
+		    },
+		    legend: {
+		    	x : 'center',
+	  			y : 'top',
+		        data:['交易金额','交易次数']
+		    },
+		    toolbox: {
+		        show : false,
+		        feature : {
+		            mark : {show: true},
+		            dataView : {show: true, readOnly: false},
+		            magicType : {show: true, type: ['line', 'bar']},
+		            restore : {show: true},
+		            saveAsImage : {show: true}
+		        }
+		    },
+		    calculable : true,
+		    xAxis : [
+		        {
+		        	name: '',
+		            type : 'category',
+		            axisLabel : {
+		                formatter: '{value} 月'
+		            },
+		            data : ['1','2','3','4','5','6','7','8','9','10','11','12']
+		        }
+		    ],
+		    yAxis : [
+	        {
+	            type : 'value',
+	            name : '金额',
+	            axisLabel : {
+	                formatter: function(value){return value/100+" 元"}
+	            },
+	            splitArea : {show : true}
+		        },
+		        {
+		            type : 'value',
+		            name : '次数',
+		            axisLabel : {
+		                formatter: '{value} 次'
+		            },
+		            splitLine : {show : false}
+		        }
+		    ],
+		    series : [
+		        {
+		            name:'交易金额',
+		            type:'bar',
+		            data:[104890.0,42320.0,0.0,0.0,418000.0,14700.0,0.0,0.0,167990.0,423435.0,0.0,140338.0]
+		        },
+		        {
+		            name:'交易次数',
+		            type:'line',
+	        		yAxisIndex: 1,
+		            data:[3,4,0,0,1,1,0,0,4,4,0,6]
+		        }
+		    ]
+		};
+	    	myChart.setOption(option);
+	    	
+	    	//各消费类别占比分析
+	        var consumeTypePCTChart = ec.init(document.getElementById('consumeType'));
+	        var consumeTypePCTOption = {
+		    title : {
+		        //text: '各消费类别占比分析'
+		    },
+		    tooltip : {
+		        trigger: 'item',
+		        formatter: "{a} <br/>{b} : {c} ({d}%)"
+		    },
+		    legend: {
+		        orient : 'vertical',
+		        x : 'left',
+		        y :'center',
+		        data:['公共事业费','日用必需品','房产装修','大学','旅游','交通运输','金融服务','信息服务','其他']
+		    },
+		    toolbox: {
+		        show : false,
+		        feature : {
+		            mark : {show: true},
+		            dataView : {show: true, readOnly: false},
+		            restore : {show: true},
+		            saveAsImage : {show: true}
+		        }
+		    },
+		    calculable : true,
+		    series : [
+		        	{
+			            name:'访问来源',
+			            type:'pie',
+			            radius : '45%',
+			            center: ['60%', 140],
+			            data:[
+			                {value:0.0343, name:'公共事业费'},
+							{value:0.0792, name:'日用必需品'},
+							{value:0.0501, name:'房产装修'},
+							{value:0.0003, name:'大学'},
+							{value:0.2014, name:'旅游'},
+							{value:0.0528, name:'交通运输'},
+							{value:0.0012, name:'金融服务'},
+							{value:0.0115, name:'信息服务'},
+							{value:0.5692, name:'其他'}
+		            	]
+		        	}
+		    	]
+			};
+	        consumeTypePCTChart.setOption(consumeTypePCTOption);
+	    	//各消费渠道占比分析
+	        var consumeChannelPCTChart = ec.init(document.getElementById('consumeChannel'));
+	        var consumeChannelPCTOption = {
+		    title : {
+		        //text: '各消费渠道占比分析'
+		    },
+		    tooltip : {
+		        trigger: 'item',
+		        formatter: "{a} <br/>{b} : {c} ({d}%)"
+		    },
+		    legend: {
+		        orient : 'vertical',
+		        x : 'left',
+		        y :'center',
+		        data:['POS','ATM','线上','柜台','手机','其他']
+		    },
+		    toolbox: {
+		        show : false,
+		        feature : {
+		            mark : {show: true},
+		            dataView : {show: true, readOnly: false},
+		            restore : {show: true},
+		            saveAsImage : {show: true}
+		        }
+		    },
+		    calculable : false,
+		    series : [
+		        {
+		            name:'消费渠道',
+		            type:'pie',
+			        center: ['55%', 140],
+		            radius : [40, 80],
+		            data:[
+		                {value:0.64, name:'POS'},
+		                {value:0.21, name:'ATM'},
+		                {value:0.15, name:'线上'},
+		                {value:0.03, name:'柜台'},
+		                {value:0.05, name:'手机'},
+		                {value:0.02, name:'其他'}
+	            	]
+		        }
+		    ]
+			};
+	        consumeChannelPCTChart.setOption(consumeChannelPCTOption);
+	    }
+	);
+}
+
+</script>
+
+</head>
+
+<body style="background:none">
+<div class="qj_box">   <!---->
+<div class="search_box"><!--搜索开始-->
+<select name="" class="sl" >
+        <option value="" >2014</option>
+        <option value="" selected>2013</option>
+</select>
+<input name="search" type="text" value="请输入银行卡号" />
+<input name="submit" type="submit" value="搜索"/>
+</div><!--搜索结束-->
+<div class="zhangdan_box">
+   <div class="zhangdan_title"><span>2013/01/01-2013/12/31</span><strong>电子对账单</strong></div>
+     <!--01开始-->
+   <table width="100%" border="0" cellspacing="0" cellpadding="0" class="zhangdan_nr01">
+  <tr>
+    <td width="24%" rowspan="3" class="toux_img"><img src="../resources/img/tx_img.png" width="148" height="98" /></td>
+    <td colspan="2" class="font_01">您持有的银行卡为 >> <strong>招商银行金卡</strong></td>
+    </tr>
+  <tr>
+    <td width="17%" rowspan="2"><img src="../resources/img/kp_img01.png" width="113" height="73" /></td>
+    <td class="font_02">年度消费支出<strong>9580.32</strong>元，共消费<strong>24</strong>笔</td>
+  </tr>
+  <tr>
+    <td><input type="submit" value="消费明细查询" onclick="location.href='/CardHolder/app/consumerDetails.html'"/></td>
+  </tr>
+</table><!--01结束-->
+
+<div class="zhangdan_zs"><!--02开始-->
+<div class="zhangdan_title02"></div>
+<h1>最近一年我的消费走势</h1>
+<div id="bill" style="height:300px;width:830px;padding:0px;"></div>
+</div>
+<div class="zhangdan_nr02">
+   <div class="zhangdan_title02"></div>
+   <div class="nr02_left01">
+   	<!--各消费类别占比分析开始-->
+   	<h1>各消费类别占比分析</h1>
+   	<div id="consumeType" style="height:300px;width:400px;padding:10px;float:left;"></div>
+   </div>
+   <div class="line_bg02"></div>
+   <div class="nr02_right01"><!--各消费渠道占比分析开始-->
+   <h1>各消费渠道占比分析</h1>
+   <div id="consumeChannel" style="height:300px;width:400px;padding:10px;float:right;"></div>
+     </div><!--各消费渠道占比分析结束-->
+      <div class="line_bg01"></div>
+    <div class="nr02_left01"><!--我在这里消费最多开始-->
+     <h1>我在这里消费最多</h1>
+     <div class="tubiao_01">
+     <div class="xiaofei"><img src="../resources/img/tz_img.png" /></div>
+     </div>
+     </div><!--我在这里消费最多开始-->
+      <div class="line_bg02"></div>
+   <div class="nr02_right01"><!--我的排名信息开始-->
+   <h1>我的排名信息</h1>
+     <div class="tubiao_01">
+     <p class="pm_font">在<strong>上海市</strong>的排名超过 <b>60.82%</b> 的人</p>
+     <div class="img_rx"><img src="../resources/img/rx_img.png" /></div>
+     </div>
+     </div><!--我的排名信息开始-->
+    <div class="line_bg01"></div> 
+   </div>
+   <!--02结束-->
+  <div class="shijian_fx"><!--我的消费时间分析开始-->
+  <div class="zhangdan_title02"></div>
+  <h1>我的消费时间分析</h1>
+  <ul>
+  <li class="shangban">消费0笔</li>
+  <li class="xiaban">消费最多：12笔</li>
+  <li class="wuye">消费0笔</li>
+  <li class="sxr">消费0笔</li>
+  <li class="sxr_wy" style="margin-right:0px;">消费0笔</li>
+  </ul>
+  </div><!--我的消费时间分析结束--> 
+   <div class="shijian_fx"><!--我的消费标签开始-->
+  <div class="zhangdan_title02"></div>
+  <h1>我的消费标签</h1>
+  <dl>
+  <dt><a href="#"><img src="../resources/img/sl_img.png" /></a></dt>
+  <dd><a href="#">商旅</a></dd>
+  </dl>
+  </div><!--我的消费标签结束--> 
+   </div>
+   <!---->
+   </div>
+</body>
+</html>

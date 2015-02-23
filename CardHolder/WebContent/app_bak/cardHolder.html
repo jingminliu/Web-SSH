@@ -1,0 +1,200 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>持卡人账单</title>
+<link href="../resources/css/style.css" rel="stylesheet" type="text/css" />
+<link type='text/css' href='../resources/css/popup.css' rel='stylesheet' media='screen' />
+<script type="text/javascript" src="../js/esl.js"></script>
+
+<script type="text/javascript">
+window.onload=function(){
+	//加载的时候刷新iframe
+	var ifr = document.getElementById("right");
+	ifr.src='/CardHolder/app/search.html';
+}
+	function cssTo(where){
+		var ifr = document.getElementById("right");
+		var billTab = document.getElementById("ckr");
+		var travelTab = document.getElementById("sl");
+		if(where==1){
+			billTab.src="../resources/img/btn/ckr_hover_bg.png";
+			travelTab.src="../resources/img/btn/sl_link_bg.png";
+			ifr.src='/CardHolder/app/bill.html';
+		}else{
+			billTab.src="../resources/img/btn/ckr_link_bg.png";
+			travelTab.src="../resources/img/btn/sl_hover_bg.png";
+			ifr.src='/CardHolder/app/travel.html';
+		}
+	}
+	
+	var myChart, option;
+
+    //创建ECharts图表 
+    function DrawEChart(ec) {
+        myChart = ec.init(document.getElementById('bar'));
+
+        option = {
+	            title : {
+			        //text: '动态数据',
+			        //subtext: '纯属虚构'
+			    },
+                tooltip : {
+                    trigger: 'axis'
+                },
+                legend: {
+                    //data:['蒸发量','降水量']
+                },
+                toolbox: {
+                    show : true,
+                    feature : {
+                        mark : {show: true},
+                        dataView : {show: true, readOnly: false},
+                        magicType : {show: true, type: ['line', 'bar']},
+                        restore : {show: true},
+                        saveAsImage : {show: true}
+                    }
+                },
+                calculable : true,
+                xAxis : [
+                    {
+                    	name : '百分比',
+                        type : 'category',
+                        axisLabel : {
+			            	formatter: '{value} %'
+			            },
+                        data : ['10','20','30','40','50','60','70','80','90','100']
+                    }
+                ],
+                yAxis : [
+                    {
+                    	name : '商户数',
+                        type : 'value',
+                        splitArea : {show : true}
+                    }
+                ],
+                series : [
+                    {
+                        //name:'蒸发量',
+                        type:'bar',
+                        //data:[2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6, 162.2, 32.6, 20.0, 6.4, 3.3]
+                        data:[11513, 15945, 13735, 22329, 43456, 9855, 21713, 21965, 16806, 354774]
+                    }
+                    /***
+                    ,
+                    {
+                        name:'降水量',
+                        type:'bar',
+                        data:[2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6, 182.2, 48.7, 18.8, 6.0, 2.3]
+                    }
+                    */
+                ]
+            }
+        myChart.setOption(option);
+    }
+    
+    
+</script>
+
+
+</head>
+
+<body>
+<div class="zd_box">
+ <div class="zd_title">
+ <table width="100%" border="0" cellspacing="0" cellpadding="0" class="dl_box">
+  <tr>
+    <td align="left"><a href="/CardHolder/app/login.html"><img src="../resources/img/zy_icon.png" align="absmiddle" />返回首页</a></td>
+    <td width="30" align="center"><img src="../resources/img/line_bg02.png"/></td>
+    <td><a href="/CardHolder/app/login.html"><img src="../resources/img/tc_icon.png" align="absmiddle" />退出</a></td>
+  </tr>
+</table></div>
+ <div class="zd_main">
+    <div class="left_nav">
+       <div class="hy_box"><strong>欢迎您！77986</strong></div>
+       <ul>
+       <li id="billTab" class="hover_bg"><a href="javascript:void(0)" target="right" onclick="cssTo(1)">
+       <img id="ckr" src="../resources/img/btn/ckr_hover_bg.png" /></a></li>
+       <li id="travelTab"><a href="javascript:void(0)" target="right" onclick="cssTo(2)">
+       <img id="sl" src="../resources/img/btn/sl_link_bg.png" /></a></li>
+       </ul>
+    </div>
+    <div class="right_nr">
+    <iframe id="right" width="100%" height="100%" src="search.html" scrolling="no" frameborder="0" name="right"></iframe>
+    </div>
+ </div>
+    <div class="sj_line"></div>
+ <div class="sj_footer">中国银联股份有限公司版权所有 © 2002-2013 沪ICP备07032180号</div> 
+</div>
+ 
+ <!--持卡人消费账单弹框-->
+ <div id="basic-modal-content" class="tankuang_box01">
+<div class="tc_biaoti" style="width:525px;"><span><a href="javascript:void(0)" onclick="closeModal()"><img src="../resources/img/close_btn.gif" /></a></span>消费详情</div>
+<div class="tankuang_nr">
+<ul>
+<li>交易名称：<strong>消费</strong></li>
+<li>商户名称：<strong>上海联家超市有限公司（家乐福虹口店）</strong></li>
+<li>商户类型：<strong>超市类</strong></li>
+<li>交易渠道：<strong>有线POS终端</strong></li>
+<li>交易时间：<strong>2014年3月16日 19:04:52</strong></li>
+<li>交易金额：<strong>185.60元</strong></li>
+<li>交易渠道：<strong>有线POS终端</strong></li>
+</ul>
+</div>
+<div class="gb_btn"><input type="submit" onclick="closeModal()" value="关闭"/></div>
+</div>
+<!--持卡人消费账单弹框--> 
+<!--商旅排名弹框01-->
+<div id="rank" class="tankuang_box02">
+<div class="tc_biaoti" style="width:700px;"><span><a href="javascript:void(0)" onclick="closeModal()"><img src="../resources/img/close_btn.gif" /></a></span>商旅交易分布</div>
+<div id="bar" class="fenbutu"></div>
+<div class="gb_btn"><input type="submit" onclick="closeModal()" value="关闭"/></div>
+</div>
+<!--商旅排名弹框01-->
+<!--商旅交易类型弹框02-->
+<div id="tradeType" class="tankuang_box03">
+<div class="tc_biaoti" style="width:700px;"><span><a href="javascript:void(0)" onclick="closeModal()"><img src="../resources/img/close_btn.gif" /></a></span>排名分布</div>
+<div class="pm_box">
+<div class="yh">
+<div class="yh_title"><img src="../resources/img/yh_icon.png"  align="absbottom"/> 银行排名</div>
+<img src="../resources/img/sl_img10.png" width="284" height="274" /></div>
+<div class="dq">
+<div class="yh_title"><img src="../resources/img/dq_icon.png"  align="absbottom"/> 地区排名</div>
+<img src="../resources/img/sl_img10.png" width="284" height="274" /></div>
+</div>
+<div class="gb_btn"><input type="submit" onclick="closeModal()" value="关闭"/></div>
+</div>
+<!--商旅交易类型弹框02--> 
+
+<script type='text/javascript' src='../js/jquery.js'></script>
+<script type='text/javascript' src='../js/jquery.simplemodal.js'></script>
+<script type="text/javascript">
+function showModal(){
+	$('#basic-modal-content').modal();
+}
+function showRankModal(){
+	$('#rank').modal();
+	require.config({
+        paths:{ 
+            echarts:'../js/echarts',
+            'echarts/chart/bar' : '../js/echarts'
+        }
+    });
+	require(
+		[
+    		'echarts',
+    		'echarts/chart/bar'
+		],
+ 	DrawEChart
+	);
+}
+function showTradeModal(){
+	$('#tradeType').modal();
+}
+function closeModal(){
+	$.modal.close();
+}
+
+</script>
+</body>
+</html>

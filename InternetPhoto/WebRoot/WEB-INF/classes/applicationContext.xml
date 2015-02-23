@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+   <bean id="impluserdao" class="com.interphoto.ImplDao.ImplUser"/>
+   <bean id="implphotodao" class="com.interphoto.ImplDao.ImplPhoto"/>
+   <bean id="implcomment" class="com.interphoto.ImplDao.ImplComment"/>
+   <bean id="implfolder" class="com.interphoto.ImplDao.ImplFolder">
+      <property name="interUser" ref="impluserdao"/>
+    </bean>
+   <bean id="RegisterAction" class="com.interphoto.Actions.UserRegisterAction">
+     <property name="interUser" ref="impluserdao"/>
+   </bean>
+   <bean id="LoginAction" class="com.interphoto.Actions.UserLoginAction">
+       <property name="interUser" ref="impluserdao"/>
+       <property name="interFolder" ref="implfolder"/>
+   </bean>
+    <bean id="UploadAction" class="com.interphoto.Actions.UploadPhotoAction">
+       <property name="interPhoto" ref="implphotodao"/>
+   </bean>
+   <bean id="SelectMyInfoAction" class="com.interphoto.Actions.SelectMyInfoAction">
+     <property name="interUser" ref="impluserdao"/>
+   </bean>
+   <bean id="ScanUserAction" class="com.interphoto.Actions.ScanUserAction">
+     <property name="interUser" ref="impluserdao"/>
+   </bean>
+   <bean id="ScanPhotoAction" class="com.interphoto.Actions.ScanPhotoAction">
+     <property name="interPhoto" ref="implphotodao"/>
+   </bean>
+   <bean id="ScanFriendPhotosAction" class="com.interphoto.Actions.ScanFriendPhotoListAction">
+     <property name="interPhoto" ref="implphotodao"/>
+     <property name="interFolder" ref="implfolder"/>
+   </bean>
+   <bean id="ScanFriendFolderAction" class="com.interphoto.Actions.ScanFriendFolderAction">
+     <property name="interFolder" ref="implfolder"/>
+     <property name="interUser" ref="impluserdao"/>
+   </bean>
+   <bean id="ScanFolderAction" class="com.interphoto.Actions.ScanFolderAction">
+     <property name="interPhoto" ref="implphotodao"/>
+   </bean>
+   <bean id="ScanCommentAction" class="com.interphoto.Actions.ScanCommentAction">
+      <property name="interComment" ref="implcomment"/>
+      <property name="interUser" ref="impluserdao"/>
+      <property name="interFolder" ref="implfolder"/>
+      <property name="interPhoto" ref="implphotodao"/>
+   </bean>
+   <bean id="PreparCommentAction" class="com.interphoto.Actions.PrepareCommentAction">
+     <property name="interPhoto" ref="implphotodao"/>
+   </bean>
+   <bean id="PrepareUploadAction" class="com.interphoto.Actions.PrepareUploadPhotoAction">
+     <property name="interFolder" ref="implfolder"/>
+   </bean>
+    <bean id="ModifyUserAction" class="com.interphoto.Actions.ModifyUserAction">
+     <property name="interUser" ref="impluserdao"/>
+   </bean>
+   <bean id="GetNewCommentAction" class="com.interphoto.Actions.GetNewCommentAction">
+     <property name="interComment" ref="implcomment"/>
+   </bean>
+   <bean id="FindFriendAction" class="com.interphoto.Actions.FindMyFriendAction">
+     <property name="interUser" ref="impluserdao"/>
+   </bean>
+   <bean id="FindAllUserAction" class="com.interphoto.Actions.FindAllUsersAction">
+     <property name="interUser" ref="impluserdao"/>
+   </bean>
+   <bean id="DeletePhotoAction" class="com.interphoto.Actions.DeletePhotoAction">
+     <property name="interPhoto" ref="implphotodao"/>
+   </bean>
+   <bean id="DeleteFriendAction" class="com.interphoto.Actions.DeleteFriendAction">
+     <property name="interUser" ref="impluserdao"/>
+   </bean>
+   <bean id="DeleteFolderAction" class="com.interphoto.Actions.DeleteFolderAction">
+     <property name="interFolder" ref="implfolder"/>
+   </bean>
+   <bean id="DeleteCommentAction" class="com.interphoto.Actions.DeleteCommentAction">
+     <property name="interComment" ref="implcomment"/>
+   </bean>
+   <bean id="CreateFolderAction" class="com.interphoto.Actions.CreateFolderAction">
+     <property name="interFolder" ref="implfolder"/>
+   </bean>
+   <bean id="AddFriendAction" class="com.interphoto.Actions.AddFriendAction">
+     <property name="interUser" ref="impluserdao"></property>
+   </bean>
+   <bean id="AddCommentAction" class="com.interphoto.Actions.AddCommentAction">
+     <property name="interComment" ref="implcomment"/>
+   </bean>
+</beans>

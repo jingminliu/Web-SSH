@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+	"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+		<!-- 配置数据库连接 -->
+		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="connection.url">jdbc:mysql://localhost:3306/bookstore?
+        useUnicode=true&amp;characterEncoding=utf8</property>
+		<property name="connection.username">root</property>		<!-- 指定数据库用户名 -->
+		<property name="connection.password">1111</property>		<!-- 指定数据库密码 -->
+		<property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+		<!-- 根据映射文件自动创建表（第一次创建，以后是修改） -->
+		<property name="hbm2ddl.auto">update</property>
+		<property name="javax.persistence.validation.mode">none</property>
+		<!-- 配置映射文件 -->
+		<mapping resource="entity/Bargain.hbm.xml"/>
+		<mapping resource="entity/Book.hbm.xml"/>
+		<mapping resource="entity/Manager.hbm.xml"/>
+		<mapping resource="entity/Orders.hbm.xml"/>
+		<mapping resource="entity/Recommended.hbm.xml"/>
+		<mapping resource="entity/Sex.hbm.xml"/>
+		<mapping resource="entity/Type.hbm.xml"/>
+		<mapping resource="entity/User.hbm.xml"/>
+		<mapping resource="entity/Ordersbook.hbm.xml"/>
+		
+	</session-factory>
+</hibernate-configuration>

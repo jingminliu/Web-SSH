@@ -1,0 +1,128 @@
+body,td,th {
+	font-family: tahoma;
+	font-size: 10px;
+	color: 5B5447;
+	vertical-align: top;
+	line-height:12px;
+}
+img{border:0;}
+a {
+	font-family: tahoma;
+	font-size: 11px;
+	color: #6F9841;	
+}
+a:visited {
+	color: #6F9841;
+}
+a
+{
+	TEXT-DECORATION:none
+}
+a:hover {
+	color:orange;
+}
+a:active {
+	color: #6F9841;
+}
+.style1 {color: #C86731}
+#divcontent
+{
+	position:relative;
+    top:-8px;
+    left:210px;
+}
+#addFolder
+{
+	position:relative;
+    top:-5px;
+    left:240px;	 
+}
+#uploadphoto
+{
+	position:relative;
+    top:-5px;
+    left:240px;
+}
+#photodetail
+{
+	position:relative;
+	top:-10px;
+    left:50px;
+}
+#systemtishi
+{
+	position:relative;
+	top:50px;
+    left:30px;
+}
+#systemtishi1
+{
+	position:relative;
+	top:40px;
+    left:50px;
+}
+#menu1
+{
+	position:relative;
+	top:38px;
+    left:10px;
+}
+#menu2
+{
+	position:relative;
+	top:30px;
+    left:25px;
+}
+#menu3
+{
+	position:relative;
+	top:25px;
+    left:25px;
+}
+#menu4
+{
+	position:relative;
+	top:20px;
+    left:20px;
+}
+#userinfo
+{
+	size:20px;
+}
+#contentinfo
+{
+	position:relative;
+	top:-20px;
+    left:10px;
+}
+#indexdivcontent
+{
+	position:relative;
+	top:-9px;
+    left:210px;
+}
+#divregister
+{
+	position:relative;
+    top:1px;
+    left:270px;
+}
+#divlogin
+{
+	position:relative;
+    top:1px;
+    left:270px;
+
+}
+#divregsuc
+{
+   position:relative;
+    top:60px;
+    left:250px;
+}
+#divuserlist
+{
+	position:relative;
+    top:-3px;
+    left:255px;
+}
